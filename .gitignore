@@ -1,0 +1,33 @@
+# 构建产物
+build/
+dist/
+*.egg-info/
+*.spec
+
+# 虚拟环境
+.venv/
+venv/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*.pyc
+
+# 测试缓存
+.pytest_cache/
+
+# 预下载的模型文件（打包时用，不提交到仓库）
+models/
+bundled_models/
+
+# 日志
+*.log
+
+# IDE / 工具
+.vscode/
+.idea/
+.workbuddy/
+
+# OS
+.DS_Store
+Thumbs.db
