@@ -1,15 +1,15 @@
 # 视频/音频语音转文字工具
 
-基于 [faster-whisper](https://github.com/SYstran/faster-whisper) 的本地语音转文字工具。完全离线运行，不联网、不传云端。支持中文和英文，输出 `.txt` 纯文本和 `.srt` 字幕文件。
+基于 [faster-whisper](https://github.com/SYstran/faster-whisper) 的本地语音转文字工具。模型下载完成后完全离线运行，不联网、不传云端。支持中文和英文，输出 `.txt` 纯文本和 `.srt` 字幕文件。
 
 ## 下载使用（普通用户）
 
-1. 到 [Releases](../../releases) 页面下载最新的 `语音转文字.exe`
+1. 到 [Releases](../../releases) 页面下载最新的 `语音转文字_无模型版.exe`
 2. 双击运行
 3. 点「选择文件」或「选择文件夹」添加音视频
 4. 点「开始转写」
 
-首次启动稍等几秒（解压内置模型），之后直接使用。默认内置 `medium` 模型，中文够用；追求更高准确率可切 `large-v3`（首次使用会自动下载，约 3GB）。
+首次运行选择 `medium` 或 `large-v3` 模型时，程序会自动从国内镜像下载（约 1.5~3 GB），下载一次后永久离线使用。
 
 **输出**：`.txt` 和 `.srt` 自动生成在源文件同目录。
 
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 
 | 参数 | 默认值 | 说明 |
 |------|--------|------|
-| 模型 | medium | tiny 最快最差，large-v3 最慢最准。中文推荐 medium / large-v3 |
+| 模型 | medium | 首次使用自动从镜像下载到本地缓存。tiny 最快最差，large-v3 最慢最准。中文推荐 medium / large-v3 |
 | 设备 | 自动 | 有 NVIDIA 显卡自动用 GPU，否则 CPU |
 | 语言 | 自动检测 | 可手动指定中文/英文 |
 | 简繁 | 简体中文 | OpenCC 统一字符变体 |
@@ -66,7 +66,8 @@ pip install -r requirements.txt
 
 ```bash
 .venv\Scripts\pip.exe install pyinstaller
-.venv\Scripts\python.exe build.py
+.venv\Scripts\python.exe build.py              # 内置 medium 模型版（1.44 GB）
+.venv\Scripts\python.exe build.py --no-model   # 无模型版（96 MB），首次运行下载模型
 ```
 
 打包产物在 `dist/` 目录。
